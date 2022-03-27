@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xogame/component/line_custom.dart';
 import 'package:xogame/provider/base_board.dart';
-import 'package:xogame/provider/wifi_player_provider.dart';
 // 1 2 3
 // 4 5 6
 // 7 8 9
 
 class BoardView extends StatefulWidget {
   final BaseBoard baseBoard;
-  BoardView({Key key, @required this.baseBoard}) : super(key: key);
+  const BoardView({Key? key, required this.baseBoard}) : super(key: key);
 
+  @override
   _BoardViewState createState() => _BoardViewState();
 }
 
@@ -18,8 +18,8 @@ class _BoardViewState extends State<BoardView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BaseBoard>(
-      key: UniqueKey(),
-      builder: (_) => widget.baseBoard,
+      key: UniqueKey(),//TODO
+      create: (_) => widget.baseBoard,
       child: Consumer<BaseBoard>(
         builder: (BuildContext context, BaseBoard board, _) => Column(
           mainAxisSize: MainAxisSize.max,
@@ -45,7 +45,7 @@ class _BoardViewState extends State<BoardView> {
                 alignment: Alignment.topCenter,
                 fit: BoxFit.contain,
                 child: Container(
-                    padding: EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(30),
                     height: 1000,
                     width: 1000,
                     child: Stack(
@@ -56,10 +56,10 @@ class _BoardViewState extends State<BoardView> {
                             for (var i = 0; i < 9; i++) buildContainer(board, i)
                           ],
                         ),
-                        if (board.winner != null)
+                        if (board.winner != null)//TODO
                           CustomPaint(
                             painter: LinePainter(
-                                board.finalWinner[0], board.finalWinner[2]),
+                                board.finalWinner![0], board.finalWinner![2]),
                             size: Size.square(
                                 MediaQuery.of(context).size.width < 1000
                                     ? 1000
@@ -81,7 +81,7 @@ class _BoardViewState extends State<BoardView> {
                 padding: const EdgeInsets.all(20.0),
                 child: InkWell(
                   onTap: board.init,
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     child: Icon(Icons.refresh),
                   ),
                 ),
@@ -99,17 +99,17 @@ class _BoardViewState extends State<BoardView> {
       aspectRatio: 1,
       child: Card(
         child: board.getState()[i] == null
-            ? FlatButton(
+            ? TextButton(
                 onPressed: () {
                   if (board.isEnd) return;
                   board.changeState(i);
                 },
-                child: null,
+                child: const SizedBox(),//TODO
               )
             : Center(
                 child: Text(
                   board.getState()[i],
-                  style: TextStyle(fontSize: 100),
+                  style: const TextStyle(fontSize: 100),
                 ),
               ),
       ),

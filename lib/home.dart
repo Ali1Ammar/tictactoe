@@ -13,22 +13,23 @@ import 'helper/preferences.dart';
 import 'helper/shared.dart';
 import 'provider/base_board.dart';
 import 'provider/computer_player_provider.dart';
-import 'screens/board.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
       theme: ThemeData(fontFamily: "Waree", brightness: Brightness.dark),
-      home: new HomeWidget(),
+      home: const HomeWidget(),
     );
   }
 }
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -43,12 +44,8 @@ class _HomeWidgetState extends State<HomeWidget> {
   void initState() {
     GetIt.instance.registerSingleton<alertFunction>(alertDilog);
     SharedPreferences.getInstance().then((pref) {
-      print(
-          "done SharedPreferencesSharedPreferencesSharedPreferencesSharedPreferences");
       GetIt.instance
           .registerLazySingleton<SharedPref>(() => SharedPref(prefs: pref));
-    }).catchError((_) {
-      GetIt.instance.registerLazySingleton<SharedPref>(() => SharedPref());
     });
 
     super.initState();
@@ -62,25 +59,25 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   Future<bool> alertDilog(Map<String, dynamic> body) {
     // bool isEnd = false;
-    Completer completer = new Completer<bool>();
+    Completer<bool> completer = Completer<bool>();
     //   String value = "";
     final connModel = ConnectHandlerModel.fromJson(body);
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("${connModel.name=="" ? 'player' : connModel.name} want play tictactoc with you"),
-            content: InfoDialog(),
+            title: Text(
+                "${connModel.name == "" ? 'player' : connModel.name} want play tictactoc with you"),
+            content: const InfoDialog(),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   completer.complete(true);
-                  print(body);
 
-                  final wifiProvider = WifiPlayerProvider(
-                      false, getGetit<SharedPref>().get("myplayer") ?? "o",
+                  final wifiProvider = WifiPlayerProvider(false,
+                      getGetit<SharedPref>().get("myplayer") as String? ?? "o",
                       hisConnectInfo: connModel);
-                        Navigator.pop(context);
+                  Navigator.pop(context);
 
                   Navigator.push(
                       context,
@@ -88,16 +85,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                           builder: (context) => BoardBulider(
                                 baseBoard: wifiProvider,
                               )));
-                            
                 },
-                child: Text("accept"),
+                child: const Text("accept"),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
-                    Navigator.pop(context);
+                  Navigator.pop(context);
                   completer.complete(false);
                 },
-                child: Text("disaccept"),
+                child: const Text("disaccept"),
               )
             ],
           );
@@ -109,24 +105,24 @@ class _HomeWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Material App Bar'),
+        title: const Text('Material App Bar'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            FlatButton(
-                child: Text("Human vs Human"),
+            TextButton(
+                child: const Text("Human vs Human"),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => new BoardBulider(
+                        builder: (context) => BoardBulider(
                               baseBoard: BaseBoard(true),
                             )),
                   );
                 }),
-            FlatButton(
-                child: Text("Human Vs Computer"),
+            TextButton(
+                child: const Text("Human Vs Computer"),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -136,7 +132,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             )),
                   );
                 }),
-            // FlatButton(
+            // TextButton(
             //     child: Text("Two board "),
             //     onPressed: () {
             //       Navigator.push(
@@ -144,8 +140,8 @@ class _HomeWidgetState extends State<HomeWidget> {
             //         MaterialPageRoute(builder: (context) => TwoBoard()),
             //       );
             //     }),
-            FlatButton(
-                child: Text("Wifi Play"),
+            TextButton(
+                child: const Text("Wifi Play"),
                 onPressed: () {
                   Navigator.push(
                     context,

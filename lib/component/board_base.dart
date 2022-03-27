@@ -4,7 +4,7 @@ import 'package:xogame/screens/board.dart';
 
 class BoardBulider extends StatelessWidget {
   final BaseBoard baseBoard;
-  const BoardBulider({Key key, this.baseBoard}) : super(key: key);
+  const BoardBulider({Key? key,required this.baseBoard}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

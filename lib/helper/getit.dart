@@ -5,7 +5,6 @@ void setupGetit() {
 //  GetIt.instance.registerSingleton<ConnectorHandlerProvider>(ConnectorHandlerProvider());
 }
 
-T getGetit<T>() {
+T getGetit<T extends Object>() {
   return GetIt.instance.get<T>();
-  
 }

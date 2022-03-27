@@ -10,28 +10,24 @@ class ConnectorInfo extends ChangeNotifier {
   ConnectorInfo() {
     pingNetwork();
   }
-  StreamSubscription<NetworkAddress> subStream;
+  StreamSubscription<NetworkAddress>? subStream;
   static Future<String> myAddress = _getIp(); //Wifi.ip;
   static const port = 8080;
-  List<Map<String, String>> listIp = [
-
-  ];
+  List<Map<String, String>> listIp = [];
 
   bool isDone = false;
   pingNetwork() async {
     isDone = false;
     // listIp.clear();
     notifyListeners();
-    print(await myAddress);
     String ip = await myAddress;
     String subnet = ip.substring(0, ip.lastIndexOf('.'));
 
     final stream = NetworkAnalyzer.discover2(subnet, port);
     //   .where((NetworkAddress addr) => addr.exists);
     subStream = stream.listen((val) {
-      if("192.168.3.67" == val.ip) 
-      {
-      print("Yes laptop HEre ${val.exists}");
+      if ("192.168.3.67" == val.ip) {
+        print("Yes laptop HEre ${val.exists}");
       }
       if (val.exists) {
         int index = listIp.length;
@@ -42,7 +38,7 @@ class ConnectorInfo extends ChangeNotifier {
         notifyListeners();
       }
     });
-    subStream.onDone(() {
+    subStream!.onDone(() {
       print("done");
       isDone = true;
       notifyListeners();
@@ -51,8 +47,7 @@ class ConnectorInfo extends ChangeNotifier {
 
   @override
   dispose() {
-    print("dispose");
-    if (subStream != null) subStream.cancel();
+     subStream?.cancel();
     super.dispose();
   }
 

@@ -9,14 +9,15 @@ import 'base_board.dart';
 
 class WifiPlayerProvider extends BaseBoard {
   final String myWord; // x or o ;
-  String myName = getGetit<SharedPref>().get("name") ?? "my";
+  String myName = getGetit<SharedPref>().get("name") as String? ?? "my";
   // String hisWord; // x or 0
-  bool isMyTurn;
+
   ConnectHandlerModel hisConnectInfo;
   //BaseConnector connector;
-  WifiPlayerProvider(this.isMyTurn, this.myWord,
-      {@required this.hisConnectInfo})
+  WifiPlayerProvider(bool isMyTurn, this.myWord,
+      {required this.hisConnectInfo})
       : super((isMyTurn && myWord == "x") || (!isMyTurn && myWord == "o")) {
+        this.isMyTurn=isMyTurn;
     //hisWord = myWord == "x" ? "o" : "x";
     //connector = BaseConnector(changeStateOutSide);
     //changeStateFunction
@@ -26,16 +27,15 @@ class WifiPlayerProvider extends BaseBoard {
   @override
   String get messegStatus {
     if (isEnd) {
-      print(winner);
-      print(myWord);
       if (winner == myWord) return "you win";
       if (winner == null) return "no winner";
       return "you lost";
     } else {
-      if (isMyTurn)
+      if (isMyTurn) {
         return "$myName turn";
-      else
+      } else {
         return "${hisConnectInfo.name.isEmpty ? 'his' : hisConnectInfo.name} turn";
+      }
     }
   }
 

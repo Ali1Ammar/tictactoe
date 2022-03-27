@@ -24,7 +24,7 @@ class Service {
           jsonEncode({"name": getGetit<SharedPref>().get("name") ?? ""}));
     });
     router.post('/connect', (Request request) async {
-      Map body = jsonDecode(await request.readAsString());
+      Map<String, dynamic> body = jsonDecode(await request.readAsString());
       final isOk = await getGetit<alertFunction>()(body);
       if (!isOk) Response.forbidden("");
       Map res = {
@@ -41,6 +41,6 @@ class Service {
       return Response.ok('');
     });
 
-    return router.handler;
+    return router ;
   }
 }

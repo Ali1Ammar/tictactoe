@@ -7,7 +7,7 @@ import 'home.dart';
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 
-import 'helper/Server.dart';
+import 'helper/server.dart';
 import 'helper/getit.dart';
 
 void main() {

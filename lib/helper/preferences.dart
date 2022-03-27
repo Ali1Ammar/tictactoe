@@ -1,75 +1,38 @@
-import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class SharedPref {
   final data = {};
-  final prefs;
-  SharedPref({this.prefs});
-  bool get isDesktop =>  Platform.isFuchsia || Platform.isWindows || Platform.isMacOS || Platform.isLinux;
-  get(String key)  {
-    if (isDesktop) {
-      return data[key];
-    }
-
-    return ( prefs).get(key);
+  final SharedPreferences prefs;
+  SharedPref({required this.prefs});
+  Object? get(String key) {
+    return (prefs).get(key);
   }
 
-  Set<String> getKeys()  {
-    if (isDesktop) {
-      return data.keys;
-    }
-
-    return ( prefs).getKeys();
+  Set<String> getKeys() {
+    return prefs.getKeys();
   }
 
-  List<String> getStringList(String key)  {
-    if (isDesktop) {
-      return get(key);
-    }
-
-    return ( prefs).getStringList(key);
+  List<String> getStringList(String key) {
+    return (prefs).getStringList(key) ?? [];
   }
 
-  bool setBool(String key, bool value)  {
-    if (isDesktop) {
-      data[key] = value;
-      return true;
-    }
-
-    return ( prefs).setBool(key, value);
+  void setBool(String key, bool value) {
+    (prefs).setBool(key, value);
   }
 
-  bool setDouble(String key, double value)  {
-    if (isDesktop) {
-      data[key] = value;
-      return true;
-    }
-
-    return ( prefs).setDouble(key, value);
+  void setDouble(String key, double value) {
+    (prefs).setDouble(key, value);
   }
 
-  boolsetInt(String key, int value)  {
-    if (isDesktop) {
-      data[key] = value;
-      return true;
-    }
-
-    return ( prefs).setInt(key, value);
+  void setInt(String key, int value) {
+    prefs.setInt(key, value);
   }
 
-  bool setString(String key, String value)  {
-    if (isDesktop) {
-      data[key] = value;
-      return true;
-    }
-
-    return (prefs).setString(key, value);
+  void setString(String key, String value) {
+    (prefs).setString(key, value);
   }
 
-  bool setStringList(String key, List<String> value)  {
-    if (isDesktop) {
-      data[key] = value;
-      return true;
-    }
-
-    return ( prefs).setStringList(key, value);
+  void setStringList(String key, List<String> value) {
+    (prefs).setStringList(key, value);
   }
 }

@@ -10,34 +10,34 @@ import 'package:xogame/provider/connector.dart';
 import 'package:xogame/provider/wifi_player_provider.dart';
 
 class FinderPage extends StatelessWidget {
-  FinderPage({Key key}) : super(key: key);
+  const FinderPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
         body: ChangeNotifierProvider<ConnectorInfo>(
-          builder: (context) => ConnectorInfo(),
+          create: (context) => ConnectorInfo(),
           //   dispose: (context, val) => val.dispose(),
           child: Consumer<ConnectorInfo>(
             builder: (context, ConnectorInfo connectorInfo, _) => Center(
-              child: connectorInfo.listIp.length != 0
+              child: connectorInfo.listIp.isNotEmpty
                   ? ListView.builder(
                       itemCount: connectorInfo.listIp.length,
                       itemBuilder: (context, index) => ListTile(
-                        title: Text(connectorInfo.listIp[index]["ip"]),
+                        title: Text(connectorInfo.listIp[index]["ip"]!),
                         subtitle: connectorInfo.listIp[index]["name"] == null
                             ? null
-                            : Text(connectorInfo.listIp[index]["name"]),
+                            : Text(connectorInfo.listIp[index]["name"]!),
                         onTap: () async {
                           await showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  content: InfoDialog(),
+                                  content: const InfoDialog(),
                                   actions: <Widget>[
-                                    FlatButton(
-                                      child: Text("Done"),
+                                    TextButton(
+                                      child: const Text("Done"),
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
@@ -45,14 +45,12 @@ class FinderPage extends StatelessWidget {
                                   ],
                                 );
                               });
-                          print("after dialog ");
                           RequestClass.sendConnection(
-                                  connectorInfo.listIp[index]["ip"], 8080)
+                                  connectorInfo.listIp[index]["ip"]!, 8080)
                               .then((val) {
-                            print(val);
                             final connModel = ConnectHandlerModel.fromJson(val);
                             final wifiProvider = WifiPlayerProvider(true,
-                                getGetit<SharedPref>().get("myplayer") ?? "x",
+                                getGetit<SharedPref>().get("myplayer") as String? ?? "x",
                                 hisConnectInfo: connModel);
                             Navigator.push(
                                 context,
@@ -61,10 +59,9 @@ class FinderPage extends StatelessWidget {
                                           baseBoard: wifiProvider,
                                         )));
                           }).catchError((err) {
-                            print(err.toString());
                             showDialog(
                                 context: context,
-                                builder: (_) => AlertDialog(
+                                builder: (_) => const AlertDialog(
                                       content: Text("your request closed"),
                                     ));
                           });
@@ -72,11 +69,11 @@ class FinderPage extends StatelessWidget {
                       ),
                     )
                   : connectorInfo.isDone
-                      ? RaisedButton(
+                      ? ElevatedButton(
                           onPressed: connectorInfo.pingNetwork,
-                          child: Text("no data click to refresh"),
+                          child: const Text("no data click to refresh"),
                         )
-                      : CircularProgressIndicator(),
+                      : const CircularProgressIndicator(),
             ),
           ),
         ));
