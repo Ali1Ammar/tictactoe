@@ -191,13 +191,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
-  ping_discover_network:
+  ping_discover_network_forked:
     dependency: "direct main"
     description:
-      name: ping_discover_network
+      name: ping_discover_network_forked
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0+1"
+    version: "0.0.1"
   platform:
     dependency: transitive
     description:

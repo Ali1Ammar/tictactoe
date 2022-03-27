@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 //import 'package:get_ip/get_ip.dart';
-import 'package:ping_discover_network/ping_discover_network.dart';
+import 'package:ping_discover_network_forked/ping_discover_network_forked.dart';
 import 'package:xogame/helper/requset.dart';
 //import 'package:wifi/wifi.dart';
 

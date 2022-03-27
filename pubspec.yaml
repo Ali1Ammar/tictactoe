@@ -34,7 +34,7 @@ dependencies:
   shelf:
   shelf_router:
   shared_preferences:
-  ping_discover_network:
+  ping_discover_network_forked:
   http:
 
 
