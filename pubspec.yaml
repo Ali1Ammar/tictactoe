@@ -1,4 +1,4 @@
-name: tictactoe
+name: xogame
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,6 +29,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  provider:
+  get_it:
+  shelf:
+  shelf_router:
+  shared_preferences:
+  ping_discover_network:
 
 
   # The following adds the Cupertino Icons font to your application.
