@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:xogame/helper/connect_handler.dart';
 import 'package:xogame/helper/getit.dart';
@@ -20,8 +19,8 @@ class WifiPlayerProvider extends BaseBoard {
         this.isMyTurn=isMyTurn;
     //hisWord = myWord == "x" ? "o" : "x";
     //connector = BaseConnector(changeStateOutSide);
-    //changeStateFunction
-    GetIt.instance.registerSingleton<changeStateFunction>(changeStateOutSide);
+    //ChangeStateFunction
+    GetIt.instance.registerSingleton<ChangeStateFunction>(changeStateOutSide);
   }
 
   @override

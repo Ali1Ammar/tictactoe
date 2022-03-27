@@ -42,7 +42,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   void initState() {
-    GetIt.instance.registerSingleton<alertFunction>(alertDilog);
+    GetIt.instance.registerSingleton<AlertFunction>(alertDilog);
     SharedPreferences.getInstance().then((pref) {
       GetIt.instance
           .registerLazySingleton<SharedPref>(() => SharedPref(prefs: pref));
@@ -145,7 +145,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => FinderPage()),
+                    MaterialPageRoute(builder: (context) => const FinderPage()),
                   );
                 }),
           ],

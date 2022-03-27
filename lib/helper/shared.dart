@@ -1,5 +1,5 @@
 
 
-typedef alertFunction = Future<bool> Function(Map<String, dynamic> body) ;
+typedef AlertFunction = Future<bool> Function(Map<String, dynamic> body) ;
 
-typedef changeStateFunction = void Function(int indexState) ;
+typedef ChangeStateFunction = void Function(int indexState) ;

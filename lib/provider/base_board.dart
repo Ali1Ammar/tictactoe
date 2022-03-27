@@ -26,12 +26,10 @@ class BaseBoard extends ChangeNotifier {
 
   BaseBoard(this.isXFirstPlayer) {
     isXPlayer = isXFirstPlayer;
-    print(isMyTurn);
   }
 
   void checkWinner(String playerNow) {
     if (isWinner(playerNow)) {
-      print("player state");
       isEnd = true;
       winner = playerNow;
     }
@@ -41,8 +39,7 @@ class BaseBoard extends ChangeNotifier {
   }
 
   bool isEndCheck() {
-    if (!isEnd && _boardState.indexOf(null) == -1) {
-      print("null state");
+    if (!isEnd && !_boardState.contains(null)) {
       isEnd = true;
     }
     return isEnd;
@@ -51,7 +48,6 @@ class BaseBoard extends ChangeNotifier {
   bool isWinner(
     String playerNow,
   ) {
-    //TODO isWinner
     final boardSatae = _boardState;
     for (final state in _winnerState) {
       if (boardSatae[state[0] - 1] == playerNow &&

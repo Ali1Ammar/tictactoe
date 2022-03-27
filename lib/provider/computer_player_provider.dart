@@ -8,12 +8,10 @@ class ComputerPlayerProvider extends BaseBoard {
   @override
   void changeState(int indexState) {
     if (!isMyTurn) return;
-    print("Here my turn");
     super.changeState(indexState);
     if (computerWord == player && !isEnd) {
       isMyTurn = false;
       computerchangeState().then((_) {
-        print("done");
         isMyTurn = true;
       });
     }
@@ -22,16 +20,14 @@ class ComputerPlayerProvider extends BaseBoard {
   Future computerchangeState() async {
     List tempList = getState();
     int nextMove = Random().nextInt(8);
-    print(nextMove);
     while (tempList[nextMove] != null) {
-      print("object");
       if (nextMove == 8) {
         nextMove = 0;
         continue;
       }
       nextMove++;
     }
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     super.changeState(nextMove);
   }
 }

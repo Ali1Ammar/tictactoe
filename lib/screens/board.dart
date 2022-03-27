@@ -56,7 +56,7 @@ class _BoardViewState extends State<BoardView> {
                             for (var i = 0; i < 9; i++) buildContainer(board, i)
                           ],
                         ),
-                        if (board.winner != null)//TODO
+                        if (board.winner != null)
                           CustomPaint(
                             painter: LinePainter(
                                 board.finalWinner![0], board.finalWinner![2]),

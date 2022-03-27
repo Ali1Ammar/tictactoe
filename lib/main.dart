@@ -17,5 +17,5 @@ void main() {
   if(Platform.isLinux ){
    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   }
-  runApp(HomePage());
+  runApp(const HomePage());
 }

@@ -26,9 +26,6 @@ class ConnectorInfo extends ChangeNotifier {
     final stream = NetworkAnalyzer.discover2(subnet, port);
     //   .where((NetworkAddress addr) => addr.exists);
     subStream = stream.listen((val) {
-      if ("192.168.3.67" == val.ip) {
-        print("Yes laptop HEre ${val.exists}");
-      }
       if (val.exists) {
         int index = listIp.length;
         listIp.add({"ip": val.ip});
@@ -39,7 +36,6 @@ class ConnectorInfo extends ChangeNotifier {
       }
     });
     subStream!.onDone(() {
-      print("done");
       isDone = true;
       notifyListeners();
     });
@@ -52,7 +48,6 @@ class ConnectorInfo extends ChangeNotifier {
   }
 
   static Future<String> _getIp() async {
-    print(NetworkInterface.listSupported);
     // if (Platform.isAndroid)
     //   return "192.168.3.26"; // Wifi.ip;
     // else if (NetworkInterface.listSupported) {
