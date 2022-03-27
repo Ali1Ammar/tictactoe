@@ -37,8 +37,7 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  // final StreamController streamController =
-  //     getGetit<ConnectorHandlerProvider>();
+
 
   @override
   void initState() {
@@ -53,14 +52,12 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   void dispose() {
-    //  streamController.close();
     super.dispose();
   }
 
   Future<bool> alertDilog(Map<String, dynamic> body) {
-    // bool isEnd = false;
     Completer<bool> completer = Completer<bool>();
-    //   String value = "";
+
     final connModel = ConnectHandlerModel.fromJson(body);
     showDialog(
         context: context,
@@ -132,14 +129,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                             )),
                   );
                 }),
-            // TextButton(
-            //     child: Text("Two board "),
-            //     onPressed: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(builder: (context) => TwoBoard()),
-            //       );
-            //     }),
             TextButton(
                 child: const Text("Wifi Play"),
                 onPressed: () {

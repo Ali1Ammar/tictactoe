@@ -18,7 +18,6 @@ class FinderPage extends StatelessWidget {
         appBar: AppBar(),
         body: ChangeNotifierProvider<ConnectorInfo>(
           create: (context) => ConnectorInfo(),
-          //   dispose: (context, val) => val.dispose(),
           child: Consumer<ConnectorInfo>(
             builder: (context, ConnectorInfo connectorInfo, _) => Center(
               child: connectorInfo.listIp.isNotEmpty
