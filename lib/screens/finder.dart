@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xogame/component/boardBase.dart';
+import 'package:xogame/component/board_base.dart';
 import 'package:xogame/component/info_dialog.dart';
 import 'package:xogame/helper/connect_handler.dart';
 import 'package:xogame/helper/getit.dart';
 import 'package:xogame/helper/preferences.dart';
 import 'package:xogame/helper/requset.dart';
 import 'package:xogame/provider/connector.dart';
-import 'package:xogame/provider/wifiPlayerProvider.dart';
+import 'package:xogame/provider/wifi_player_provider.dart';
 
 class FinderPage extends StatelessWidget {
   FinderPage({Key key}) : super(key: key);

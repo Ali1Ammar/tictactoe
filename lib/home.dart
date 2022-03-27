@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xogame/component/info_dialog.dart';
-import 'package:xogame/provider/wifiPlayerProvider.dart';
+import 'package:xogame/provider/wifi_player_provider.dart';
 import 'package:xogame/screens/finder.dart';
-import 'component/boardBase.dart';
+import 'component/board_base.dart';
 import 'helper/connect_handler.dart';
 import 'helper/getit.dart';
 import 'helper/preferences.dart';
 import 'helper/shared.dart';
 import 'provider/base_board.dart';
-import 'provider/ComputerPlayerProvider.dart';
+import 'provider/computer_player_provider.dart';
 import 'screens/board.dart';
 
 class HomePage extends StatelessWidget {

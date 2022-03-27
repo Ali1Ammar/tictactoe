@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xogame/component/LineCustom.dart';
+import 'package:xogame/component/line_custom.dart';
 import 'package:xogame/provider/base_board.dart';
-import 'package:xogame/provider/wifiPlayerProvider.dart';
+import 'package:xogame/provider/wifi_player_provider.dart';
 // 1 2 3
 // 4 5 6
 // 7 8 9
